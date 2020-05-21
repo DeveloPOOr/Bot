@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="a019e5f5-e27b-4f80-a82c-80c1e6b83527" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Procfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Projects.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Bot.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Film.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/GoogleSheetsIntegration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/info" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/credentials.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tokens/StoredCredential" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1b1rVSgUed7DbAmCvG8Njp4UZfY" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Bot">
+    <configuration name="Bot" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Bot" />
+      <module name="Projects" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GoogleSheetsIntegration" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="GoogleSheetsIntegration" />
+      <module name="Projects" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="Projects" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SheetsQuickstart" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="SheetsQuickstart" />
+      <module name="Projects" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Bot" />
+        <item itemvalue="Application.GoogleSheetsIntegration" />
+        <item itemvalue="Application.SheetsQuickstart" />
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a019e5f5-e27b-4f80-a82c-80c1e6b83527" name="Default Changelist" comment="" />
+      <created>1587810465214</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1587810465214</updated>
+      <workItem from="1587810473640" duration="11448000" />
+      <workItem from="1589032883423" duration="16000" />
+      <workItem from="1589039344886" duration="7000" />
+      <workItem from="1589285015607" duration="3670000" />
+      <workItem from="1589292578695" duration="4218000" />
+      <workItem from="1589311656815" duration="54798000" />
+      <workItem from="1589891084019" duration="3566000" />
+      <workItem from="1590002283109" duration="1563000" />
+      <workItem from="1590065219010" duration="578000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="448" y="194" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1590012058502">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="448" y="194" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.768@0.0.1366.768" timestamp="1590012058502" />
+    <state width="1324" height="140" key="GridCell.Tab.0.bottom" timestamp="1590012474943">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state width="1324" height="140" key="GridCell.Tab.0.bottom/0.0.1366.768@0.0.1366.768" timestamp="1590012474943" />
+    <state width="1324" height="339" key="GridCell.Tab.0.bottom/0.23.1366.685@0.23.1366.685" timestamp="1589408523106" />
+    <state width="1324" height="206" key="GridCell.Tab.0.bottom/0.23.1366.689@0.23.1366.689" timestamp="1589812431618" />
+    <state width="1324" height="140" key="GridCell.Tab.0.center" timestamp="1590012474942">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state width="1324" height="140" key="GridCell.Tab.0.center/0.0.1366.768@0.0.1366.768" timestamp="1590012474942" />
+    <state width="1324" height="339" key="GridCell.Tab.0.center/0.23.1366.685@0.23.1366.685" timestamp="1589408523104" />
+    <state width="1324" height="206" key="GridCell.Tab.0.center/0.23.1366.689@0.23.1366.689" timestamp="1589812431612" />
+    <state width="1324" height="140" key="GridCell.Tab.0.left" timestamp="1590012474941">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state width="1324" height="140" key="GridCell.Tab.0.left/0.0.1366.768@0.0.1366.768" timestamp="1590012474941" />
+    <state width="1324" height="339" key="GridCell.Tab.0.left/0.23.1366.685@0.23.1366.685" timestamp="1589408523103" />
+    <state width="1324" height="206" key="GridCell.Tab.0.left/0.23.1366.689@0.23.1366.689" timestamp="1589812431602" />
+    <state width="1324" height="140" key="GridCell.Tab.0.right" timestamp="1590012474943">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state width="1324" height="140" key="GridCell.Tab.0.right/0.0.1366.768@0.0.1366.768" timestamp="1590012474943" />
+    <state width="1324" height="339" key="GridCell.Tab.0.right/0.23.1366.685@0.23.1366.685" timestamp="1589408523105" />
+    <state width="1324" height="206" key="GridCell.Tab.0.right/0.23.1366.689@0.23.1366.689" timestamp="1589812431613" />
+    <state width="1324" height="250" key="GridCell.Tab.1.bottom" timestamp="1589830060424">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state width="1324" height="250" key="GridCell.Tab.1.bottom/0.0.1366.768@0.0.1366.768" timestamp="1589830060424" />
+    <state width="1324" height="208" key="GridCell.Tab.1.bottom/0.23.1366.685@0.23.1366.685" timestamp="1589381960999" />
+    <state width="1324" height="250" key="GridCell.Tab.1.center" timestamp="1589830060423">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state width="1324" height="250" key="GridCell.Tab.1.center/0.0.1366.768@0.0.1366.768" timestamp="1589830060423" />
+    <state width="1324" height="208" key="GridCell.Tab.1.center/0.23.1366.685@0.23.1366.685" timestamp="1589381960997" />
+    <state width="1324" height="250" key="GridCell.Tab.1.left" timestamp="1589830060423">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state width="1324" height="250" key="GridCell.Tab.1.left/0.0.1366.768@0.0.1366.768" timestamp="1589830060423" />
+    <state width="1324" height="208" key="GridCell.Tab.1.left/0.23.1366.685@0.23.1366.685" timestamp="1589381960996" />
+    <state width="1324" height="250" key="GridCell.Tab.1.right" timestamp="1589830060424">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state width="1324" height="250" key="GridCell.Tab.1.right/0.0.1366.768@0.0.1366.768" timestamp="1589830060424" />
+    <state width="1324" height="208" key="GridCell.Tab.1.right/0.23.1366.685@0.23.1366.685" timestamp="1589381960998" />
+    <state x="221" y="46" key="Maven.ArtifactSearchDialog" timestamp="1589307417512">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="221" y="46" key="Maven.ArtifactSearchDialog/0.0.1366.768@0.0.1366.768" timestamp="1589307417512" />
+    <state x="171" y="0" key="SettingsEditor" timestamp="1590002193648">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="171" y="0" key="SettingsEditor/0.0.1366.768@0.0.1366.768" timestamp="1590002193648" />
+    <state x="100" y="100" width="1166" height="568" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1589316654182">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="100" y="100" width="1166" height="568" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1366.768@0.0.1366.768" timestamp="1589316654182" />
+    <state x="376" y="216" key="com.intellij.ide.util.TipDialog" timestamp="1589891084941">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="376" y="216" key="com.intellij.ide.util.TipDialog/0.0.1366.768@0.0.1366.768" timestamp="1589891084941" />
+    <state x="241" y="127" width="883" height="590" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1589534939891">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="241" y="127" width="883" height="590" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1366.768@0.0.1366.768" timestamp="1589534939891" />
+    <state x="348" y="92" width="670" height="676" key="search.everywhere.popup" timestamp="1589732155896">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="348" y="92" width="670" height="676" key="search.everywhere.popup/0.0.1366.768@0.0.1366.768" timestamp="1589732155896" />
+  </component>
+</project>
