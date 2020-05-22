@@ -12,20 +12,16 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMar
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+
 import java.io.IOException;
-import java.lang.reflect.Array;
-import java.net.MalformedURLException;
-import java.net.URL;
+
 import java.security.GeneralSecurityException;
 import java.util.*;
 
 import static java.lang.System.getProperties;
 
 class Bot extends TelegramLongPollingBot{
-        private String nice = "\n\nПриятного просмотра!";
+
     public String theme = "";
     public  String genre = "";
     private String[] genreMas = new String[]{"Драма", "Комедия", "Мелодрама", "Романтика", "Боевик", "Семейный фильм", "Документальный","Фантастика", "Биография", "Военный", "Исторический"};
@@ -34,12 +30,7 @@ class Bot extends TelegramLongPollingBot{
     private ArrayList<Film> films = new ArrayList<>();
     String[] genres = new String[0];
     Map<Long, String> usersStates = new HashMap<>();
-    enum States{
-        START,
-        THEME,
-        GENRE
 
-    }
     public static void main(String[] args) {
         getProperties().put("proxySet", "true");
 
