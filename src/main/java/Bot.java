@@ -32,11 +32,7 @@ class Bot extends TelegramLongPollingBot{
     Map<Long, String> usersStates = new HashMap<>();
 
     public static void main(String[] args) {
-        getProperties().put("proxySet", "true");
-
-        getProperties().put("socksProxyHost", "127.0.0.1");
-
-        getProperties().put("socksProxyPort", "9150");
+       
         ApiContextInitializer.init(); // Инициализируем апи
         TelegramBotsApi botapi = new TelegramBotsApi();
         try {
