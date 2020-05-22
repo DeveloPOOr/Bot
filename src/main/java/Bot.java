@@ -20,9 +20,7 @@ import java.lang.reflect.Array;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.security.GeneralSecurityException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 import static java.lang.System.getProperties;
 
@@ -35,8 +33,19 @@ class Bot extends TelegramLongPollingBot{
     private boolean button = false;
     private ArrayList<Film> films = new ArrayList<>();
     String[] genres = new String[0];
-    public static void main(String[] args) {
+    Map<Long, String> usersStates = new HashMap<>();
+    enum States{
+        START,
+        THEME,
+        GENRE
 
+    }
+    public static void main(String[] args) {
+        getProperties().put("proxySet", "true");
+
+        getProperties().put("socksProxyHost", "127.0.0.1");
+
+        getProperties().put("socksProxyPort", "9150");
         ApiContextInitializer.init(); // Инициализируем апи
         TelegramBotsApi botapi = new TelegramBotsApi();
         try {
@@ -55,14 +64,16 @@ class Bot extends TelegramLongPollingBot{
     public void onUpdateReceived(Update e) {
         Message message = e.getMessage();
         if(message != null && message.hasText()) {
+            if(!usersStates.containsKey(message.getChatId())) {
+                addUser(message);
+            }
 
 
+            if(usersStates.get(message.getChatId()).equals("START")) {
+                  switch (message.getText().toLowerCase()){
 
-            if(!button) {
-                  switch (message.getText()){
-
-                      case "Выбрать Фильм":
-                          button = true;
+                      case "выбрать фильм":
+                          usersStates.put(message.getChatId(), "THEME") ;
                           sendMsg(message,"Выберите Тему", themeMas);
                           break;
                       default:
@@ -70,10 +81,10 @@ class Bot extends TelegramLongPollingBot{
                           break;
                   }
               } else{
-              if(theme.isEmpty()) {          //если человек не записал тему
-                  if(Arrays.asList(themeMas).contains(message.getText()) && !message.getText().equals("Назад")){       //если он выбрал тему то..
+              if(usersStates.get(message.getChatId()).equals("THEME")) {          //если человек не записал тему
+                  if(Arrays.asList(themeMas).contains(message.getText()) && !message.getText().toLowerCase().equals("назад")){       //если он выбрал тему то..
                       theme = message.getText().toLowerCase();  // присваи(е)ваем теме значение
-
+                      usersStates.put(message.getChatId(), "GENRE") ;
                       try {
                           genres = genresForTheme(genreMas, this.theme);
                       } catch (GeneralSecurityException ex) {
@@ -85,10 +96,10 @@ class Bot extends TelegramLongPollingBot{
                           sendMsg(message,"Выберите Жанр", genres);
 
                   }else {
-                      switch (message.getText()){
-                          case "Назад":
+                      switch (message.getText().toLowerCase()){
+                          case "назад":
                           case "/start":
-                              button = false;
+                              usersStates.put(message.getChatId(), "START") ;
                               sendMsg(message, "Здравсвуйте!\n\nХотите посмотреть фильм?\nНажмите 'Выбрать Фильм'\n", new String[]{"Выбрать Фильм"});
                               break;
                           default:
@@ -98,10 +109,10 @@ class Bot extends TelegramLongPollingBot{
                   }
 
               }else {                                                                 //тут уже в теме что то лежит
-                  if(genre.isEmpty()) {
-                      if(Arrays.asList(genreMas).contains(message.getText()) && !message.getText().equals("Назад")) {       // а если человек и жанр выбрал то выдаем ему фильм
+                  if(usersStates.get(message.getChatId()).equals("GENRE")) {
+                      if(Arrays.asList(genreMas).contains(message.getText()) && !message.getText().toLowerCase().equals("назад")) {       // а если человек и жанр выбрал то выдаем ему фильм
                           genre = message.getText().toLowerCase();
-
+                          usersStates.put(message.getChatId(), "MORE") ;
 
                           try {
                               films = GoogleSheetsIntegration.selectedFilms(theme, genre);
@@ -115,13 +126,14 @@ class Bot extends TelegramLongPollingBot{
 
                       } else {// написал фигню
 
-                          switch (message.getText()) {
-                              case "Назад":
+                          switch (message.getText().toLowerCase()) {
+                              case "назад":
                                   theme = "";
+                                  usersStates.put(message.getChatId(), "THEME") ;
                                   sendMsg(message, "Выберите Тему", themeMas);
                                   break;
                               case "/start":
-                                  button = false;
+                                  usersStates.put(message.getChatId(), "START") ;
                                   theme = "";
                                   sendMsg(message, "Здравсвуйте!\n\nХотите посмотреть фильм?\nНажмите 'Выбрать Фильм'\n", new String[]{"Выбрать Фильм"});
                                   break;
@@ -134,18 +146,19 @@ class Bot extends TelegramLongPollingBot{
                           }
                       }
                   } else {
-                      switch (message.getText()) {
+                      switch (message.getText().toLowerCase()) {
                           case "/start":
-                              button = false;
+                              usersStates.put(message.getChatId(), "START") ;
                               theme = "";
                               genre = "";
                               sendMsg(message, "Здравсвуйте!\n\nХотите посмотреть фильм?\nНажмите 'Выбрать Фильм'\n", new String[]{"Выбрать Фильм"});
                               break;
-                          case "Еще Фильм":
+                          case "еще фильм":
                               ifNoFilms(message);
                               break;
-                          case "Новый Фильм":
+                          case "новый фильм":
                               films.removeAll(films);
+                              usersStates.put(message.getChatId(), "THEME") ;
                               theme = "";
                               genre = "";
                               sendMsg(message, "Выберите Тему", themeMas);
@@ -232,7 +245,7 @@ private Film getRandomFilm() {
 }
 private void ifNoFilms(Message message) {
         if(films.isEmpty()) {
-            sendMsg(message, "Извините такие фильмы закончились", new String[]{"Новый Фильм"});
+            sendMsg(message, "Извините, такие фильмы закончились", new String[]{"Новый Фильм"});
         } else {
             Film film = getRandomFilm();
             sendPhoto(message, film.getUrl(), film.filmToMsg());
@@ -255,6 +268,9 @@ private String[] genresForTheme(String[] allGenres, String theme) throws General
         return ans.toString().split(" ");
 }
 
+private void addUser(Message message) {
+        usersStates.put(message.getChatId(), "START");
+}
     @Override
     public String getBotToken() {
         return "1282277506:AAEsm5gquEqshTPToIzgI3dFHsAlTRC9maU";
