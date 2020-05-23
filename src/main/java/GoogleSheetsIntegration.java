@@ -83,26 +83,38 @@ import java.util.List;
 
 
                 String durTheme = "";
-                for (List row : values) {     // это ты берешь по одной строке
-
-                    if(!row.get(0).toString().isEmpty()) {
-                        durTheme = row.get(0).toString().toLowerCase();
-                    }
-                    if(row.size() == 6) {
-
-
-
-
-                        if (durTheme.equals(theme) && row.get(3).toString().contains(genre)) {
-
-                            films.add(new Film(row.get(1).toString(), row.get(2).toString(), row.get(3).toString(), row.get(5).toString()));
+                if (genre.equals("драма")) {
+                    for(List row : values) {
+                        if(!row.get(0).toString().isEmpty()) {
+                            durTheme = row.get(0).toString().toLowerCase();
+                        }
+                        if(row.size() == 6) {
+                            if(durTheme.equals(theme) && row.get(3).toString().replaceAll("мелодрама", "").contains(genre)) {
+                                films.add(new Film(row.get(1).toString(), row.get(2).toString(), row.get(3).toString(), row.get(5).toString()));
+                            }
                         }
                     }
+                }else {
 
+
+                    for (List row : values) {     // это ты берешь по одной строке
+
+                        if (!row.get(0).toString().isEmpty()) {
+                            durTheme = row.get(0).toString().toLowerCase();
+                        }
+                        if (row.size() == 6) {
+
+
+                            if (durTheme.equals(theme) && row.get(3).toString().contains(genre)) {
+
+                                films.add(new Film(row.get(1).toString(), row.get(2).toString(), row.get(3).toString(), row.get(5).toString()));
+                            }
+                        }
+
+
+                    }
 
                 }
-
-
                 }
             return films;
             }

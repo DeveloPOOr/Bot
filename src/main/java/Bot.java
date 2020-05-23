@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.util.*;
 
+import static java.lang.System.getProperties;
 
 
 class Bot extends TelegramLongPollingBot{
@@ -28,7 +29,11 @@ class Bot extends TelegramLongPollingBot{
     Map<Long, User> usersStates = new HashMap<>();
 
     public static void main(String[] args) {
+        getProperties().put("proxySet", "true");
 
+        getProperties().put("socksProxyHost", "127.0.0.1");
+
+        getProperties().put("socksProxyPort", "9150");
         ApiContextInitializer.init(); // Инициализируем апи
         TelegramBotsApi botapi = new TelegramBotsApi();
         try {
@@ -39,7 +44,7 @@ class Bot extends TelegramLongPollingBot{
     }
     @Override
     public String getBotUsername() {
-        return "film_123bot";
+        return "WatchAndThinkBot";
         //возвращаем юзера
     }
 
@@ -260,7 +265,7 @@ private String[] genresForTheme(String[] allGenres, String theme) throws General
 
     @Override
     public String getBotToken() {
-        return "1282277506:AAEsm5gquEqshTPToIzgI3dFHsAlTRC9maU";
+        return "1177485989:AAEj5-dfK86RLGpspm8B1Q34fkQ7iXsCb9Y";
         //Токен бота
     }
 
