@@ -27,9 +27,10 @@ class Bot extends TelegramLongPollingBot{
     private String[] genreMas = new String[]{"Драма", "Комедия", "Мелодрама", "Романтика", "Боевик", "Семейный фильм", "Документальный","Фантастика", "Биография", "Военный", "Исторический"};
     private String[] themeMas = new String[]{"Война", "Политика", "Гендерная идентичность", "Болезни", "Семья", "Равенство полов", "Природа и Экология", "Назад"};
     Map<Long, User> usersStates = new HashMap<>();
-
+    String hello = "Привет, друг \uD83E\uDD16\n" +
+            "Это бот ThinkAndWatch!\n" +
+            "Здесь ты сможешь найти фильм на любой вкус, просто нажми кнопку \n«Выбрать фильм»\uD83D\uDCA1";
     public static void main(String[] args) {
-        
         ApiContextInitializer.init(); // Инициализируем апи
         TelegramBotsApi botapi = new TelegramBotsApi();
         try {
@@ -63,7 +64,7 @@ class Bot extends TelegramLongPollingBot{
                           sendMsg(message,"Выберите Тему", themeMas);
                           break;
                       default:
-                          sendMsg(message, "Здравсвуйте!\n\nХотите посмотреть фильм?\nНажмите 'Выбрать Фильм'\n", new String[]{"Выбрать Фильм"});
+                          sendMsg(message, hello, new String[]{"Выбрать Фильм"});
                           break;
                   }
               } else{
@@ -89,7 +90,7 @@ class Bot extends TelegramLongPollingBot{
                           case "/start":
 
                               usersStates.put(message.getChatId(), new User()) ;
-                              sendMsg(message, "Здравсвуйте!\n\nХотите посмотреть фильм?\nНажмите 'Выбрать Фильм'\n", new String[]{"Выбрать Фильм"});
+                              sendMsg(message, hello, new String[]{"Выбрать Фильм"});
                               break;
                           default:
                               sendMsg(message,"Выберите Тему", themeMas);
@@ -126,7 +127,7 @@ class Bot extends TelegramLongPollingBot{
                               case "/start":
                                   usersStates.put(message.getChatId(), new User()) ;
 
-                                  sendMsg(message, "Здравсвуйте!\n\nХотите посмотреть фильм?\nНажмите 'Выбрать Фильм'\n", new String[]{"Выбрать Фильм"});
+                                  sendMsg(message, hello, new String[]{"Выбрать Фильм"});
                                   break;
 
                               default:
@@ -140,7 +141,7 @@ class Bot extends TelegramLongPollingBot{
                       switch (message.getText().toLowerCase()) {
                           case "/start":
                               usersStates.put(message.getChatId(), new User()) ;
-                              sendMsg(message, "Здравсвуйте!\n\nХотите посмотреть фильм?\nНажмите 'Выбрать Фильм'\n", new String[]{"Выбрать Фильм"});
+                              sendMsg(message, hello, new String[]{"Выбрать Фильм"});
                               break;
                           case "еще фильм":
                               ifNoFilms(message, user);
