@@ -28,7 +28,7 @@ class Bot extends TelegramLongPollingBot{
     private String[] themeMas = new String[]{"Война", "Политика", "Гендерная идентичность", "Болезни", "Семья", "Равенство полов", "Природа и Экология", "Назад"};
     Map<Long, User> usersStates = new HashMap<>();
     String hello = "Привет, друг \uD83E\uDD16\n" +
-            "Это бот ThinkAndWatch!\n" +
+            "Это бот WatchAndThink!\n" +
             "Здесь ты сможешь найти фильм на любой вкус, просто нажми кнопку \n«Выбрать фильм»\uD83D\uDCA1";
     public static void main(String[] args) {
         ApiContextInitializer.init(); // Инициализируем апи

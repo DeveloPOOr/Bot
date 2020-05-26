@@ -4,7 +4,6 @@
     <list default="true" id="a019e5f5-e27b-4f80-a82c-80c1e6b83527" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Bot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Bot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tokens/StoredCredential" beforeDir="false" afterPath="$PROJECT_DIR$/tokens/StoredCredential" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,7 +123,7 @@
       <workItem from="1589891084019" duration="3566000" />
       <workItem from="1590002283109" duration="1563000" />
       <workItem from="1590065219010" duration="7429000" />
-      <workItem from="1590137332142" duration="7553000" />
+      <workItem from="1590137332142" duration="8511000" />
     </task>
     <task id="LOCAL-00001" summary="“First commit in project”">
       <created>1590065989830</created>
@@ -175,7 +174,14 @@
       <option name="project" value="LOCAL" />
       <updated>1590272583166</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="“smile”">
+      <created>1590360680909</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1590360680909</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -186,17 +192,18 @@
     <MESSAGE value="“User states added”" />
     <MESSAGE value="“user added”" />
     <MESSAGE value="“drama bug + bot name”" />
-    <option name="LAST_COMMIT_MESSAGE" value="“drama bug + bot name”" />
+    <MESSAGE value="“smile”" />
+    <option name="LAST_COMMIT_MESSAGE" value="“smile”" />
   </component>
   <component name="WindowStateProjectService">
     <state x="448" y="194" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1590012058502">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state x="448" y="194" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.768@0.0.1366.768" timestamp="1590012058502" />
-    <state x="294" y="23" width="778" height="691" key="CommitChangelistDialog2" timestamp="1590272582979">
+    <state x="294" y="23" width="778" height="691" key="CommitChangelistDialog2" timestamp="1590360680706">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state x="294" y="23" width="778" height="691" key="CommitChangelistDialog2/0.0.1366.768@0.0.1366.768" timestamp="1590272582979" />
+    <state x="294" y="23" width="778" height="691" key="CommitChangelistDialog2/0.0.1366.768@0.0.1366.768" timestamp="1590360680706" />
     <state width="1324" height="139" key="GridCell.Tab.0.bottom" timestamp="1590360542065">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
