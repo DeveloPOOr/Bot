@@ -1,3 +1,7 @@
+package com.Bot;
+
+import com.Bot.domain.Film;
+import com.Bot.domain.User;
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.services.sheets.v4.Sheets;
@@ -64,7 +68,7 @@ import java.util.List;
          * Prints the names and majors of students in a sample spreadsheet:
          * https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
          */
-        public static ArrayList<Film> selectedFilms(String theme, String genre) throws GeneralSecurityException, IOException {
+        public static ArrayList<Film> selectedFilms(String theme, String genre, User user) throws GeneralSecurityException, IOException {
             ArrayList<Film> films = new ArrayList<>();
             // Build a new authorized API client service.
             final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
@@ -90,7 +94,7 @@ import java.util.List;
                         }
                         if(row.size() == 6) {
                             if(durTheme.equals(theme) && row.get(3).toString().replaceAll("мелодрама", "").contains(genre)) {
-                                films.add(new Film(row.get(1).toString(), row.get(2).toString(), row.get(3).toString(), row.get(5).toString()));
+                                films.add(new Film(row.get(1).toString(), row.get(2).toString(), row.get(3).toString(), row.get(5).toString(), user));
                             }
                         }
                     }
@@ -107,7 +111,7 @@ import java.util.List;
 
                             if (durTheme.equals(theme) && row.get(3).toString().contains(genre)) {
 
-                                films.add(new Film(row.get(1).toString(), row.get(2).toString(), row.get(3).toString(), row.get(5).toString()));
+                                films.add(new Film(row.get(1).toString(), row.get(2).toString(), row.get(3).toString(), row.get(5).toString(), user));
                             }
                         }
 

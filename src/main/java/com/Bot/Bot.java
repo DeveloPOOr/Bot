@@ -1,6 +1,10 @@
+package com.Bot;
 
 
-
+import com.Bot.domain.Film;
+import com.Bot.domain.Genre;
+import com.Bot.domain.User;
+import com.Bot.services.UserService;
 import org.telegram.telegrambots.ApiContextInitializer;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
@@ -18,7 +22,7 @@ import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.util.*;
 
-import static java.lang.System.getProperties;
+
 
 
 class Bot extends TelegramLongPollingBot{
@@ -26,11 +30,13 @@ class Bot extends TelegramLongPollingBot{
 
     private String[] genreMas = new String[]{"Драма", "Комедия", "Мелодрама", "Романтика", "Боевик", "Семейный фильм", "Документальный","Фантастика", "Биография", "Военный", "Исторический"};
     private String[] themeMas = new String[]{"Война", "Политика", "Гендерная идентичность", "Болезни", "Семья", "Равенство полов", "Природа и Экология", "Назад"};
-    Map<Long, User> usersStates = new HashMap<>();
+    UserService userService = new UserService();
     String hello = "Привет, друг \uD83E\uDD16\n" +
             "Это бот WatchAndThink!\n" +
             "Здесь ты сможешь найти фильм на любой вкус, просто нажми кнопку \n«Выбрать фильм»\uD83D\uDCA1";
     public static void main(String[] args) {
+
+
         ApiContextInitializer.init(); // Инициализируем апи
         TelegramBotsApi botapi = new TelegramBotsApi();
         try {
@@ -49,18 +55,23 @@ class Bot extends TelegramLongPollingBot{
     public void onUpdateReceived(Update e) {
         Message message = e.getMessage();
         if(message != null && message.hasText()) {
-            if(!usersStates.containsKey(message.getChatId())) {
-                usersStates.put(message.getChatId(), new User());
+            if(userService.findUser(message.getChatId()) == null) {
+                User user = new User();
+                user.setState("START");
+                user.setId(message.getChatId());
+                userService.saveUser(user);
             }
-            User user = usersStates.get(message.getChatId());
+            User user = userService.findUser(message.getChatId());
 
-            if(user.state.equals("START")) {
+
+            if(user.getState().equals("START")) {
+
                   switch (message.getText().toLowerCase()){
-
                       case "выбрать фильм":
+                          user.setState("THEME");
 
-                          user.state = "THEME";
-                          usersStates.put(message.getChatId(), user) ;
+                          userService.updateUser(user);
+
                           sendMsg(message,"Выберите Тему", themeMas);
                           break;
                       default:
@@ -68,28 +79,28 @@ class Bot extends TelegramLongPollingBot{
                           break;
                   }
               } else{
-              if(user.state.equals("THEME")) {          //если человек не записал тему
+
+              if(user.getState().equals("THEME")) {          //если человек не записал тему
 
                   if(Arrays.asList(themeMas).contains(message.getText()) && !message.getText().toLowerCase().equals("назад")){       //если он выбрал тему то..
-                      user.theme = message.getText().toLowerCase();// присваи(е)ваем теме значение
-                      user.state = "GENRE";
-                      usersStates.put(message.getChatId(), user) ;
+                      user.setTheme(message.getText().toLowerCase());// присваи(е)ваем теме значение
+                      user.setState("GENRE");
+
                       try {
-                          user.genres = genresForTheme(genreMas, user.theme);
-                      } catch (GeneralSecurityException ex) {
-                          ex.printStackTrace();
-                      } catch (IOException ex) {
+                          user.setGenres(genresForTheme(genreMas, user.getTheme(), user));
+                      } catch (GeneralSecurityException | IOException ex) {
                           ex.printStackTrace();
                       }
 
-                          sendMsg(message,"Выберите Жанр", user.genres);
+                      userService.updateUser(user);
+                      sendMsg(message,"Выберите Жанр", user.getGenres());
 
                   }else {
                       switch (message.getText().toLowerCase()){
                           case "назад":
                           case "/start":
 
-                              usersStates.put(message.getChatId(), new User()) ;
+                              userService.deleteUser(user);
                               sendMsg(message, hello, new String[]{"Выбрать Фильм"});
                               break;
                           default:
@@ -99,40 +110,40 @@ class Bot extends TelegramLongPollingBot{
                   }
 
               }else {                                                                 //тут уже в теме что то лежит
-                  if(user.state.equals("GENRE")) {
+                  if(user.getState().equals("GENRE")) {
                       if(Arrays.asList(genreMas).contains(message.getText()) && !message.getText().toLowerCase().equals("назад")) {       // а если человек и жанр выбрал то выдаем ему фильм
-                          user.genre = message.getText().toLowerCase();
-                          user.state = "MORE";
-                          usersStates.put(message.getChatId(), user) ;
+                          user.setGenre(message.getText().toLowerCase());
+                          user.setState("MORE");
+
 
                           try {
-                              user.films = GoogleSheetsIntegration.selectedFilms(user.theme, user.genre);
+                              user.setFilms(GoogleSheetsIntegration.selectedFilms(user.getTheme(), user.getGenre(), user));
                               ifNoFilms(message, user);
                           } catch (IOException ex) {
                               ex.printStackTrace();
                           } catch (GeneralSecurityException ex) {
                               ex.printStackTrace();
                           }
-
+                          userService.updateUser(user);
 
                       } else {// написал фигню
 
                           switch (message.getText().toLowerCase()) {
                               case "назад":
-                                  user.theme = "";
-                                  user.state = "THEME";
-                                  usersStates.put(message.getChatId(), user) ;
+                                  user.setTheme("");
+                                  user.setState("THEME");
+                                  userService.saveUser(user);
                                   sendMsg(message, "Выберите Тему", themeMas);
                                   break;
                               case "/start":
-                                  usersStates.put(message.getChatId(), new User()) ;
+                                  userService.deleteUser(user);
 
                                   sendMsg(message, hello, new String[]{"Выбрать Фильм"});
                                   break;
 
                               default:
 
-                                      sendMsg(message,"Выберите Жанр", user.genres);
+                                      sendMsg(message,"Выберите Жанр", user.getGenres());
 
                                   break;
                           }
@@ -140,18 +151,20 @@ class Bot extends TelegramLongPollingBot{
                   } else {
                       switch (message.getText().toLowerCase()) {
                           case "/start":
-                              usersStates.put(message.getChatId(), new User()) ;
+                              userService.deleteUser(user);
                               sendMsg(message, hello, new String[]{"Выбрать Фильм"});
                               break;
                           case "еще фильм":
                               ifNoFilms(message, user);
                               break;
                           case "новый фильм":
-                              user.films.removeAll(user.films);
-                              user.state = "THEME";
-                              user.theme = "";
-                              user.genre = "";
-                              usersStates.put(message.getChatId(), user) ;
+
+                              user.setFilms(new ArrayList<>());
+                              user.setState("THEME");
+                              user.setTheme("");
+                              user.setGenre("");
+                              user.setGenres(new LinkedHashSet<>());
+                              userService.updateUser(user);
 
                               sendMsg(message, "Выберите Тему", themeMas);
                               break;
@@ -168,21 +181,23 @@ class Bot extends TelegramLongPollingBot{
     }
 
 
-    private void sendMsg(Message message, String s) {
+
+
+    public void sendMsg(Message message, String s, String[] buttons) {
         SendMessage sendMessage = new SendMessage();
         sendMessage.enableMarkdown(true);
         sendMessage.setChatId(message.getChatId().toString());
 
         sendMessage.setText(s);
         try{
-
+            setButtons(sendMessage, buttons);
             execute(sendMessage);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void sendMsg(Message message, String s, String[] buttons) {
+    public void sendMsg(Message message, String s, Set<Genre> buttons) {
         SendMessage sendMessage = new SendMessage();
         sendMessage.enableMarkdown(true);
         sendMessage.setChatId(message.getChatId().toString());
@@ -227,16 +242,34 @@ class Bot extends TelegramLongPollingBot{
         replyKeyboardMarkup.setKeyboard(keyboardRowList);
     }
 
+    private void setButtons(SendMessage sendMessage, Set<Genre> buttons) {
+
+        ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
+        sendMessage.setReplyMarkup(replyKeyboardMarkup);
+        replyKeyboardMarkup.setSelective(true);
+        replyKeyboardMarkup.setResizeKeyboard(true);
+        List<KeyboardRow> keyboardRowList = new ArrayList<>();
+        replyKeyboardMarkup.setOneTimeKeyboard(false); //не пропадет
+
+        for(Genre button : buttons){
+            KeyboardRow first = new KeyboardRow();
+            first.add(button.getGenre());
+            keyboardRowList.add(first);
+        }
+        replyKeyboardMarkup.setKeyboard(keyboardRowList);
+    }
+
 private Film getRandomFilm(User user) {
     int a = 0; // Начальное значение диапазона - "от"
-    int b = user.films.size(); // Конечное значение диапазона - "до"
+    int b = user.getFilms().size(); // Конечное значение диапазона - "до"
     int randIndex = a + (int)(Math.random()*b);
-    Film strFilm = user.films.get(randIndex);
-    user.films.remove(randIndex);
+    Film strFilm = user.getFilms().get(randIndex);
+    user.getFilms().remove(randIndex); ///вот тут мэйби трабл
+    userService.updateUser(user);
         return strFilm;
 }
 private void ifNoFilms(Message message, User user) {
-        if(user.films.isEmpty()) {
+        if(user.getFilms().isEmpty()) {
             sendMsg(message, "Извините, такие фильмы закончились", new String[]{"Новый Фильм"});
         } else {
             Film film = getRandomFilm(user);
@@ -245,19 +278,26 @@ private void ifNoFilms(Message message, User user) {
         }
 }
 
-private String[] genresForTheme(String[] allGenres, String theme) throws GeneralSecurityException, IOException {
-        StringBuilder ans = new StringBuilder();
-        ArrayList<Film> films = GoogleSheetsIntegration.selectedFilms(theme, "");
+private Set<Genre> genresForTheme(String[] allGenres, String theme, User user) throws GeneralSecurityException, IOException {
+        Set<Genre> genres = new LinkedHashSet<>();
+        StringBuilder check = new StringBuilder();
+        List<Film> films = GoogleSheetsIntegration.selectedFilms(theme, "", null);
         for( Film film : films) {
             for(String genre : allGenres) {
-                if(film.getGenre().contains(genre.toLowerCase()) && !ans.toString().contains(genre)) {
-                    ans.append(genre);
-                    ans.append(" ");
+                if(film.getGenre().contains(genre.toLowerCase()) && !check.toString().contains(genre)) {
+                    check.append(genre);
+                    Genre genre1 = new Genre();
+                    genre1.setGenre(genre);
+                    genre1.setUser(user);
+                    genres.add(genre1);
                 }
             }
         }
-        ans.append("Назад");
-        return ans.toString().split(" ");
+        Genre genre2 = new Genre();
+        genre2.setGenre("Назад");
+        genre2.setUser(user);
+        genres.add(genre2);
+        return genres;
 }
 
     @Override
